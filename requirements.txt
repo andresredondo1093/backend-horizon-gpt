@@ -1,6 +1,6 @@
 fastapi==0.104.1
 uvicorn==0.24.0
-httpx==0.24.1
+httpx==0.23.3
 python-jose==3.3.0
 passlib==1.7.4
 python-dotenv==1.0.0
@@ -8,5 +8,9 @@ pydantic==2.4.2
 bcrypt==4.0.1
 python-multipart==0.0.6
 gunicorn==21.2.0
-aiohttp==3.11.1
-supabase==2.3.0
+aiohttp==3.8.5
+supabase==1.0.4
+gotrue==1.0.2
+postgrest==0.10.6
+storage3==0.5.4
+realtime==1.0.0
