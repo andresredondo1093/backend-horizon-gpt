@@ -188,7 +188,7 @@ class ChatHelper:
         """
         try:
             # URL del webhook de n8n
-            webhook_url = "https://n8n-n8n.crt53y.easypanel.host/webhook-test/send-message"
+            webhook_url = "https://n8n-n8n.crt53y.easypanel.host/webhook/send-message"
             
             # Preparar payload
             payload = {
