@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import logging
 from pathlib import Path
+import sys
 
 # Cargar variables de entorno
 load_dotenv()
@@ -10,13 +11,24 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Configurar el logging
+log_handlers = [logging.StreamHandler()]
+
+# Intentar crear el directorio de logs y añadir el FileHandler si es posible
+logs_dir = BASE_DIR / "logs"
+try:
+    if not logs_dir.exists():
+        logs_dir.mkdir(parents=True, exist_ok=True)
+    
+    log_file = logs_dir / "app.log"
+    log_handlers.append(logging.FileHandler(log_file))
+except (OSError, PermissionError) as e:
+    # Si no podemos crear el directorio o archivo, solo usamos la consola
+    print(f"No se pudo crear el directorio/archivo de logs: {e}", file=sys.stderr)
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(BASE_DIR / "logs" / "app.log"),
-        logging.StreamHandler()
-    ]
+    handlers=log_handlers
 )
 
 logger = logging.getLogger(__name__)
